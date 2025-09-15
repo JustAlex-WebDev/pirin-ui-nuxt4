@@ -59,6 +59,9 @@ export default defineNuxtConfig({
   // SSR and Nitro configurations
   ssr: false,
   nitro: {
+    compressPublicAssets: true,
+    debug: true,
+    preset: "cloudflare-pages",
     prerender: {
       routes: ["/"],
       crawlLinks: true,
