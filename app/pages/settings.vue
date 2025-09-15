@@ -7,12 +7,13 @@
           <v-icon :icon="'mdi-home-outline'" size="x-small" color=""></v-icon>
 
           <!-- Title -->
-          <span>Начало</span>
+          <span>Настройки</span>
         </h1>
 
         <!-- Subtitle -->
         <p class="text-subtitle-1 text-medium-emphasis">
-          Добре дошли в началната страница на Пирин!
+          Тук можете да промените настройки, като например ucum преводи,
+          тестове/специалности и резултати от забележки.
         </p>
       </v-sheet>
     </v-col>
@@ -25,6 +26,6 @@
 //
 
 definePageMeta({
-  title: "Начало",
+  title: "Настройки",
 });
 </script>

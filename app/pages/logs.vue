@@ -7,12 +7,13 @@
           <v-icon :icon="'mdi-home-outline'" size="x-small" color=""></v-icon>
 
           <!-- Title -->
-          <span>Начало</span>
+          <span>Журнали</span>
         </h1>
 
         <!-- Subtitle -->
         <p class="text-subtitle-1 text-medium-emphasis">
-          Добре дошли в началната страница на Пирин!
+          По-долу са показани всички изпратени резултати към НЗИС, заедно с
+          информация за състоянието на всяко едно изпращане.
         </p>
       </v-sheet>
     </v-col>
@@ -25,6 +26,6 @@
 //
 
 definePageMeta({
-  title: "Начало",
+  title: "Журнали",
 });
 </script>

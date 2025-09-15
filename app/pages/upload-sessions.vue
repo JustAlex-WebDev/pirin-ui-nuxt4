@@ -7,12 +7,12 @@
           <v-icon :icon="'mdi-home-outline'" size="x-small" color=""></v-icon>
 
           <!-- Title -->
-          <span>Начало</span>
+          <span>Сесии за изпращане на резултати НМДД</span>
         </h1>
 
         <!-- Subtitle -->
         <p class="text-subtitle-1 text-medium-emphasis">
-          Добре дошли в началната страница на Пирин!
+          По-долу са показани сесиите за изпращане на резултати в избрания ден.
         </p>
       </v-sheet>
     </v-col>
@@ -25,6 +25,6 @@
 //
 
 definePageMeta({
-  title: "Начало",
+  title: "Сесии за изпращане",
 });
 </script>

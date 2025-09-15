@@ -17,6 +17,7 @@ export const useDrawer = () => {
       title: "Начало",
       icon: "mdi-home-outline",
       to: "/",
+      tooltipText: "Начало",
     },
   ]);
 
@@ -25,6 +26,7 @@ export const useDrawer = () => {
       title: "Календар",
       icon: "mdi-calendar-text-outline",
       to: "/calendar",
+      tooltipText: "Статистически данни по дни",
     },
   ]);
 
@@ -32,12 +34,14 @@ export const useDrawer = () => {
     {
       title: "Грешки",
       icon: "mdi-message-lock-outline",
-      to: "/errors",
+      to: "/exceptions",
+      tooltipText: "Открити грешки при подаване на резултати към НЗИС",
     },
     {
       title: "Сесии за изпращане",
       icon: "mdi-list-status",
-      to: "/sessions",
+      to: "/upload-sessions",
+      tooltipText: "Статистически данни по дни",
     },
   ]);
 
@@ -46,6 +50,7 @@ export const useDrawer = () => {
       title: "Swagger Документация",
       icon: "mdi-book-outline",
       to: `${config.public.PIRIN_FE_SWAGGER_URL}/index.html`,
+      tooltipText: "Swagger Документация",
       external: true,
     },
   ]);
@@ -55,17 +60,20 @@ export const useDrawer = () => {
       title: "Настройки",
       icon: "mdi-cog-outline",
       to: "/settings",
+      tooltipText: "Конфигурация на Пирин",
       isPirinAdminRequired: true,
     },
     {
       title: "Журнали",
       icon: "mdi-format-list-bulleted-type",
       to: "/logs",
+      tooltipText: "Журнали",
       isPirinAdminRequired: true,
     },
     {
       title: "Относно",
       icon: "mdi-information-outline",
+      tooltipText: "Информация относно приложението",
       to: "/about",
     },
   ]);

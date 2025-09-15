@@ -7,12 +7,12 @@
           <v-icon :icon="'mdi-home-outline'" size="x-small" color=""></v-icon>
 
           <!-- Title -->
-          <span>Начало</span>
+          <span>Информация</span>
         </h1>
 
         <!-- Subtitle -->
         <p class="text-subtitle-1 text-medium-emphasis">
-          Добре дошли в началната страница на Пирин!
+          Back-end v.2.0.0 • Front-end v.1.1.0
         </p>
       </v-sheet>
     </v-col>
@@ -25,6 +25,6 @@
 //
 
 definePageMeta({
-  title: "Начало",
+  title: "Информация",
 });
 </script>

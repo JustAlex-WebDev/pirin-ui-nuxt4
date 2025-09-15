@@ -13,8 +13,9 @@
       <DrawerItem
         :to="item.to"
         :icon="item.icon"
-        :label="item.title"
-        :external="item.external"
+        :title="item.title"
+        :tooltipText="item.tooltipText"
+        :external="item?.external || false"
       />
     </template>
   </v-list>
@@ -30,9 +31,10 @@ import DrawerItem from "../molecules/DrawerItem.vue";
 // Types
 //
 interface DrawerItemType {
-  title: string;
-  icon: string;
   to: string;
+  icon: string;
+  title: string;
+  tooltipText: string;
   isPirinAdminRequired?: boolean;
   external?: boolean;
 }

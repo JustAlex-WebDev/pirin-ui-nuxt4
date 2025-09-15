@@ -1,4 +1,3 @@
-<!-- app/components/drawer/template/Drawer.vue -->
 <template>
   <v-navigation-drawer app v-model="drawer">
     <!-- Header Section -->
@@ -32,8 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import DrawerHeader from "~/components/drawer/organisms/DrawerHeader.vue";
-import DrawerSection from "~/components/drawer/organisms/DrawerSection.vue";
+import DrawerHeader from "~/components/navigation-drawer/organisms/DrawerHeader.vue";
+import DrawerSection from "~/components/navigation-drawer/organisms/DrawerSection.vue";
 
 //
 // Types

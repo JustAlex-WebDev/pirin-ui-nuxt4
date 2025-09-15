@@ -1,6 +1,15 @@
 <template>
   <div>
-    <NavBar :app-info="appInfo" :logo-url="logoUrl" />
+    <!-- Navigation Drawer -->
+    <Drawer
+      :appName="appName"
+      :userName="userName"
+      :userEmail="userEmail"
+      :backgroundImage="backgroundImage"
+    />
+
+    <!-- App Bar -->
+    <AppBar />
 
     <v-main>
       <v-container fluid class="pa-4">
@@ -11,6 +20,9 @@
 </template>
 
 <script setup lang="ts">
+import AppBar from "~/components/app-bar/template/AppBar.vue";
+import Drawer from "~/components/navigation-drawer/template/Drawer.vue";
+
 //
 // Types
 //
@@ -45,6 +57,12 @@ const appInfo = ref<AppInfo>({
   helpLink: "",
 });
 const logoUrl = ref<string>("");
+
+// Drawer
+const appName = "Пирин";
+const userName = "Damyan Sarafov";
+const userEmail = "damyan.sarafov@skyware-group.com";
+const backgroundImage = "/img/forest.jpg";
 
 //
 // Computed Properties
