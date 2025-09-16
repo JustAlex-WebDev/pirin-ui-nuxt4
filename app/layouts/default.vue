@@ -44,22 +44,8 @@ const ac = new AbortController();
 // Route
 const route = useRoute();
 
-import { useAuthClient } from "~/lib/auth-client";
-
-// Auth logic
-const { getUserInfo, isAuthenticated } = useAuthClient();
-const userInfo = ref<any>(null);
-
-// Check authentication and fetch user info in layout
-onBeforeMount(async () => {
-  if (isAuthenticated) {
-    try {
-      userInfo.value = await getUserInfo();
-    } catch (error) {
-      console.error("Failed to fetch user info", error);
-    }
-  }
-});
+// Auth
+const { user } = useAuth();
 
 //
 // State
@@ -92,11 +78,11 @@ const pageTitle = computed(() => {
 
 // User info
 const userName = computed(() => {
-  return userInfo.value ? userInfo.value.name || "Потребител" : "Гост";
+  return user.value?.name || user.value?.preferred_username || "Потребител";
 });
 
 const userEmail = computed(() => {
-  return userInfo.value ? userInfo.value.email || "Неизвестен" : "Неизвестен";
+  return user.value?.email || "email@example.com";
 });
 
 // SEO keywords

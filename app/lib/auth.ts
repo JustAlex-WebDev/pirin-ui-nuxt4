@@ -84,22 +84,13 @@ export async function logIn(redirectUri = window.location.origin) {
 }
 
 // Log out function
-export async function logOut(redirectUri = window.location.origin) {
+export async function logOut(redirectUri = window.location.origin + "/login") {
   try {
-    // Disconnect SignalR before logout
-    try {
-      const { resetSignalRClient } = await import(
-        "~/composables/useSignalRClient"
-      );
-      resetSignalRClient();
-    } catch (error) {
-      console.warn("Could not reset SignalR client:", error);
+    if (keycloak && isAuthenticated) {
+      await keycloak.logout({ redirectUri });
     }
 
-    // Reset the singleton
-    resetSignalRClient();
-
-    await keycloak?.logout({ redirectUri });
+    // Clean up state
     isAuthenticated = false;
     stopTokenExpirationTracking();
     stopAutoTokenRefresh();
@@ -107,12 +98,15 @@ export async function logOut(redirectUri = window.location.origin) {
     if (typeof window !== "undefined") {
       // Clear all keys from localStorage
       localStorage.clear();
-
       // Clear all keys from sessionStorage
       sessionStorage.clear();
     }
   } catch (error) {
     console.error("Logout failed:", error);
+    // Force redirect even if Keycloak logout fails
+    if (typeof window !== "undefined") {
+      window.location.href = redirectUri;
+    }
   }
 }
 

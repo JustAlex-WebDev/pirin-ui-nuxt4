@@ -1,9 +1,11 @@
 import { useAuthClient } from "~/lib/auth-client";
+import type { User } from "~/types/auth";
 
 export const useAuth = () => {
   const isAuthenticated = useState("auth.isAuthenticated", () => false);
-  const user = useState("auth.user", () => null as any);
+  const user = useState<User | null>("auth.user", () => null);
   const isInitialized = useState("auth.isInitialized", () => false);
+  const error = useState("auth.error", () => null);
 
   const authClient = useAuthClient();
 
@@ -26,6 +28,7 @@ export const useAuth = () => {
     }
 
     try {
+      error.value = null;
       const config = useRuntimeConfig();
       const authenticated = await authClient.initAuth(onLoad, {
         kcUrl: config.public.OIDC_AUTHORITY,
@@ -41,15 +44,16 @@ export const useAuth = () => {
       }
 
       return authenticated;
-    } catch (error) {
-      console.error("Auth initialization failed:", error);
+    } catch (err: Error | any) {
+      error.value = err;
+      console.error("Auth initialization failed:", err);
       return false;
     }
   };
 
   const loadUser = async () => {
     try {
-      user.value = await authClient.getUserInfo();
+      user.value = (await authClient.getUserInfo()) ?? null;
     } catch (error) {
       console.error("Failed to load user:", error);
     }
@@ -66,17 +70,24 @@ export const useAuth = () => {
   const logout = async () => {
     try {
       // Disconnect SignalR first
-      const { disconnect } = useSignalR();
-      await disconnect();
+      try {
+        const { disconnect } = useSignalR();
+        await disconnect();
+      } catch (error) {
+        console.warn("SignalR disconnect failed:", error);
+      }
 
-      await authClient.logOut();
-
-      // Reset state
+      // Reset state BEFORE calling authClient.logOut
       isAuthenticated.value = false;
       user.value = null;
       isInitialized.value = false;
+
+      // Call Keycloak logout - this will redirect to Keycloak and then back
+      await authClient.logOut(window.location.origin + "/login");
     } catch (error) {
       console.error("Logout failed:", error);
+      // Force redirect to login even if logout fails
+      await navigateTo("/login", { replace: true, external: true });
     }
   };
 
@@ -89,6 +100,7 @@ export const useAuth = () => {
     isAuthenticated: readonly(isAuthenticated),
     user: readonly(user),
     displayName,
+    error: readonly(error),
 
     // Auth client passthrough
     getRoles: authClient.getRoles,
@@ -102,5 +114,6 @@ export const useAuth = () => {
     login,
     logout,
     refreshUserInfo,
+    clearError: () => (error.value = null),
   };
 };
