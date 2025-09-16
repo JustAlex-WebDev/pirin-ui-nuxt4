@@ -1,10 +1,35 @@
 <template>
-  <div class="d-flex align-center ga-2">
+  <div class="d-flex align-center ga-0 mr-2">
     <!-- Download Button -->
-    <DownloadAppButton />
+    <AppBarActionButton
+      icon="mdi-download"
+      tooltipText="Изтегляне"
+      :loading="downloadLoading"
+      :onClick="handleDownload"
+    />
 
-    <!-- Future actions can be added here -->
-    <!-- User menu, etc. -->
+    <!-- Search Button (conditional) -->
+    <AppBarActionButton
+      v-if="searchConfig.show"
+      icon="mdi-magnify"
+      :tooltipText="searchConfig.tooltipText"
+    />
+
+    <!-- Parole All Button (conditional) -->
+    <AppBarActionButton
+      v-if="paroleAllConfig.show"
+      icon="mdi-lock-open-outline"
+      :tooltipText="paroleAllConfig.tooltipText"
+    />
+
+    <!-- Upload Status Menu -->
+    <UploadStatusMenu />
+
+    <!-- Account Button -->
+    <AppBarActionButton
+      icon="mdi-account-outline"
+      tooltipText="Детайли за профила"
+    />
   </div>
 </template>
 
@@ -12,5 +37,12 @@
 //
 // Imports
 //
-import DownloadAppButton from "../molecules/DownloadAppButton.vue";
+import AppBarActionButton from "../molecules/AppBarActionButton.vue";
+import UploadStatusMenu from "./UploadStatusMenu.vue";
+
+//
+// Composables
+//
+const { downloadLoading, searchConfig, paroleAllConfig, handleDownload } =
+  useAppBar();
 </script>

@@ -1,16 +1,25 @@
 <template>
   <!-- NavBar -->
   <v-app-bar app flat dark color="primary">
-    <!-- Drawer Toggle -->
-    <DrawerToggle v-model="drawer" />
+    <!-- Prepended Content -->
+    <template v-slot:prepend>
+      <!-- Drawer Toggle -->
+      <DrawerToggle v-model="drawer" />
 
-    <!-- Page Title -->
-    <PageTitle :title="pageTitle" />
+      <!-- Page Title -->
+      <PageTitle v-if="!smAndDown" :title="pageTitle" />
+    </template>
 
-    <v-spacer />
+    <!-- Appended Content -->
+    <template v-slot:append>
+      <!-- Actions -->
+      <AppBarActions />
+    </template>
 
-    <!-- Actions -->
-    <AppBarActions />
+    <!-- Extensions - Only render slot when needed -->
+    <template v-slot:extension v-if="extensionsConfig.show">
+      <AppBarExtensions />
+    </template>
   </v-app-bar>
 </template>
 
@@ -18,32 +27,22 @@
 //
 // Imports
 //
+import { useDisplay } from "vuetify";
 import DrawerToggle from "../molecules/DrawerToggle.vue";
 import PageTitle from "../molecules/PageTitle.vue";
 import AppBarActions from "../organisms/AppBarActions.vue";
-
-//
-// Composables
-//
-const { drawer } = useDrawer();
+import AppBarExtensions from "../organisms/AppBarExtensions.vue";
 
 //
 // Initial Setup
 //
 
-// Router
-const route = useRoute();
+// Breakpoints
+const { smAndDown } = useDisplay();
 
 //
-// Computed Properites
+// Composables
 //
-
-interface PageMeta {
-  title?: string;
-  titleEn?: string;
-}
-const pageTitle = computed(() => {
-  const meta = route.meta as PageMeta;
-  return meta.title || "iLabMB - Micro Path";
-});
+const { drawer } = useDrawer();
+const { pageTitle, extensionsConfig } = useAppBar();
 </script>
