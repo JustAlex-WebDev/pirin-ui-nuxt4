@@ -94,7 +94,6 @@ export const useAppBar = () => {
       downloadLoading.value = true;
       // Simulate download process
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log("Download completed");
     } catch (error) {
       console.error("Download failed:", error);
     } finally {

@@ -49,7 +49,7 @@ export const useDrawer = () => {
     {
       title: "Swagger Документация",
       icon: "mdi-book-outline",
-      to: `${config.public.PIRIN_FE_SWAGGER_URL}/index.html`,
+      to: `${config.public.APP_BASE_URL}/index.html`,
       tooltipText: "Swagger Документация",
       external: true,
     },

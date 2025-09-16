@@ -10,8 +10,8 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   devServer: {
-    host: process.env.PIRIN_FE_HOST || "0.0.0.0",
-    port: Number(process.env.PIRIN_FE_PORT) || 80,
+    port: 3000,
+    host: "localhost",
   },
 
   // Add CSS files for global styles
@@ -84,9 +84,25 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
+      // App Version
       appVersion: packageJson.version,
-      PIRIN_FE_BASE_URL: process.env.PIRIN_FE_BASE_URL,
-      PIRIN_FE_SWAGGER_URL: process.env.PIRIN_FE_SWAGGER_URL,
+
+      // Base URL
+      API_BASE_URL: process.env.API_BASE_URL,
+      APP_BASE_URL: process.env.APP_BASE_URL,
+      PIRIN_FE_BASE_URL: process.env.PIRIN_FE_BASE_URL || "/",
+
+      // Keycloak / OIDC settings
+      OIDC_AUTHORITY: process.env.PIRIN_FE_OIDC_AUTHORITY,
+      OIDC_CLIENT_ID: process.env.PIRIN_FE_OIDC_CLIENT_ID,
+      OIDC_REALM: process.env.PIRIN_FE_OIDC_REALM,
+
+      // Token auto-refresh settings
+      OIDC_TOKEN_AUTO_REFRESH: process.env.PIRIN_FE_OIDC_TOKEN_AUTO_REFRESH,
+      OIDC_TOKEN_AUTO_REFRESH_CHECK_INTERVAL:
+        process.env.PIRIN_FE_OIDC_TOKEN_AUTO_REFRESH_CHECK_INTERVAL,
+      OIDC_TOKEN_AUTO_REFRESH_TIME_LEFT:
+        process.env.PIRIN_FE_OIDC_TOKEN_AUTO_REFRESH_TIME_LEFT,
     },
   },
 });

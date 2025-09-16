@@ -44,6 +44,23 @@ const ac = new AbortController();
 // Route
 const route = useRoute();
 
+import { useAuthClient } from "~/lib/auth-client";
+
+// Auth logic
+const { getUserInfo, isAuthenticated } = useAuthClient();
+const userInfo = ref<any>(null);
+
+// Check authentication and fetch user info in layout
+onBeforeMount(async () => {
+  if (isAuthenticated) {
+    try {
+      userInfo.value = await getUserInfo();
+    } catch (error) {
+      console.error("Failed to fetch user info", error);
+    }
+  }
+});
+
 //
 // State
 //
@@ -60,8 +77,6 @@ const logoUrl = ref<string>("");
 
 // Drawer
 const appName = "Пирин";
-const userName = "Damyan Sarafov";
-const userEmail = "damyan.sarafov@skyware-group.com";
 const backgroundImage = "/img/forest.jpg";
 
 //
@@ -73,6 +88,15 @@ const pageTitle = computed(() => {
   const meta = route.meta as { title?: string; titleEn?: string };
   const routeTitle = meta.title;
   return routeTitle ? `${routeTitle} - Пирин` : "Пирин";
+});
+
+// User info
+const userName = computed(() => {
+  return userInfo.value ? userInfo.value.name || "Потребител" : "Гост";
+});
+
+const userEmail = computed(() => {
+  return userInfo.value ? userInfo.value.email || "Неизвестен" : "Неизвестен";
 });
 
 // SEO keywords

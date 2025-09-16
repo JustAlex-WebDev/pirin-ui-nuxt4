@@ -3,14 +3,13 @@
     <template v-slot:activator="{ props }">
       <v-btn text v-bind="props" @click="onClick">
         <!-- Loading state -->
-        <v-btn v-if="loading">
-          <v-progress-circular
-            size="20"
-            width="2"
-            indeterminate
-            color="white"
-          />
-        </v-btn>
+        <v-progress-circular
+          v-if="loading"
+          size="20"
+          width="2"
+          indeterminate
+          color="white"
+        />
 
         <!-- Normal state -->
         <v-icon v-else size="x-large" :icon="icon" />
