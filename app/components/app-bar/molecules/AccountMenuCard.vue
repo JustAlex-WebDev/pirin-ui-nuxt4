@@ -7,36 +7,16 @@
       </p>
 
       <!-- User Avatar and Name -->
-      <div class="text-center my-3" data-testid="user-avatar-section">
-        <v-avatar
-          color="primary"
-          size="60"
-          class="text-white font-weight-bold"
-          data-testid="user-avatar-large"
-        >
-          <span class="text-h5">
-            {{ user && user.name ? user.name.charAt(0).toUpperCase() : "U" }}
-          </span>
-        </v-avatar>
-
-        <h3 class="mt-2 text-body-1 text-primary">
-          {{ userName }}
-        </h3>
+      <div class="text-center my-3">
+        <UserAvatar
+          :user="user"
+          :display-name="userName"
+          :size="60"
+          avatarColor="primary"
+        />
 
         <!-- User Roles -->
-        <div v-if="pirinRoles.length > 0" class="my-2">
-          <v-chip
-            v-for="role in pirinRoles"
-            :key="role"
-            size="small"
-            variant="outlined"
-            :rounded="4"
-            class="mr-2 text-medium-emphasis"
-          >
-            <v-icon start icon="mdi-account-outline" />
-            {{ role === "pirin-admin" ? "Администратор" : "Потребител" }}
-          </v-chip>
-        </div>
+        <UserRoles :pirinRoles="pirinRoles" />
       </div>
 
       <v-divider />
@@ -55,6 +35,9 @@
 </template>
 
 <script setup lang="ts">
+import UserAvatar from "./UserAvatar.vue";
+import UserRoles from "./UserRoles.vue";
+
 //
 // Types
 //

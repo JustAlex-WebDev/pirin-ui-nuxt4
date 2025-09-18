@@ -5,7 +5,9 @@
     :alt="imageAlt"
     cover
     height="60vh"
+    width="90vw"
     max-width="356.578px"
+    max-height="450px"
     class="rounded-lg elevation-2"
   >
     <!-- Loading placeholder -->

@@ -5,7 +5,7 @@
 
     <!-- Main Content -->
     <v-main>
-      <v-container class="mt-16">
+      <v-container class="my-8 my-sm-16">
         <LoginForm />
       </v-container>
     </v-main>

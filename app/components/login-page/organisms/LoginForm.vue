@@ -1,22 +1,24 @@
 <template>
   <v-row>
-    <!-- Content Section -->
-    <v-col cols="12" md="4" class="d-flex align-center justify-center">
-      <LoginContent
-        title="Пирин"
-        subtitle="Сървър осигуряващ интеграция между ЛИС iLab и НЗИС"
-        description="Пирин е софтуерен продукт на SKYWARE Group осигуряващ 100%-ва интеграция между ЛИС iLab и НЗИС в реално време. Пирин е напълно автоматичен и при правилна конфигурация не изисква никаква администраторска интеракция."
-        loginButtonText="Вход в Пирин"
-      />
-    </v-col>
+    <div
+      class="w-100 d-flex flex-wrap ga-8 ga-0 align-start align-sm-center justify-start justify-sm-center px-4"
+    >
+      <div style="max-width: 380px">
+        <LoginContent
+          title="Пирин"
+          subtitle="Сървър осигуряващ интеграция между ЛИС iLab и НЗИС"
+          description="Пирин е софтуерен продукт на SKYWARE Group осигуряващ 100%-ва интеграция между ЛИС iLab и НЗИС в реално време. Пирин е напълно автоматичен и при правилна конфигурация не изисква никаква администраторска интеракция."
+          loginButtonText="Вход в Пирин"
+        />
+      </div>
 
-    <!-- Illustration Section -->
-    <v-col cols="12" md="8" class="d-flex align-center justify-center">
-      <LoginIllustration
-        image-src="/img/forest-sm.jpg"
-        image-alt="Пирин – илюстрация на гора"
-      />
-    </v-col>
+      <div class="ml-0 ml-md-16">
+        <LoginIllustration
+          image-src="/img/forest-sm.jpg"
+          image-alt="Пирин – илюстрация на гора"
+        />
+      </div>
+    </div>
   </v-row>
 </template>
 
