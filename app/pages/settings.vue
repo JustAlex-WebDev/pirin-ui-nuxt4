@@ -24,8 +24,8 @@
 //
 // Metadata
 //
-
 definePageMeta({
   title: "Настройки",
+  adminRequired: true,
 });
 </script>

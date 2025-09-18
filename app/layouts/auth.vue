@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-main>
-      <v-container fluid fill-height class="pa-0">
-        <slot />
-      </v-container>
-    </v-main>
+    <slot />
   </v-app>
 </template>
 

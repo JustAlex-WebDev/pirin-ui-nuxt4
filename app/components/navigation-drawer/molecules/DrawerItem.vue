@@ -44,6 +44,7 @@
   <v-tooltip v-else location="bottom" :open-delay="700" :close-delay="300">
     <template v-slot:activator="{ props: tooltipProps }">
       <v-list-item
+        :disabled="!isPirinAdmin && isPirinAdminRequired"
         v-bind="tooltipProps"
         :to="to"
         :rounded="true"
@@ -83,6 +84,15 @@ const props = defineProps<Props>();
 //
 // Composables
 //
+
+// Auth
+const { isPirinAdmin } = useAuth();
+
+//
+// Initial Setup
+//
+
+// Route
 const route = useRoute();
 
 //

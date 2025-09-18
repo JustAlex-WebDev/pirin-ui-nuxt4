@@ -27,5 +27,6 @@
 
 definePageMeta({
   title: "Журнали",
+  adminRequired: true,
 });
 </script>

@@ -14,17 +14,6 @@
         <p class="text-subtitle-1 text-medium-emphasis">
           Добре дошли в системата Пирин, {{ displayName }}!
         </p>
-
-        <!-- Logout Button -->
-        <v-btn
-          color="error"
-          variant="outlined"
-          @click="handleLogout"
-          :loading="signingOut"
-          prepend-icon="mdi-logout"
-        >
-          Изход
-        </v-btn>
       </v-sheet>
     </v-col>
   </v-row>
@@ -34,31 +23,12 @@
 //
 // Composables
 //
-const { user, logout, displayName } = useAuth();
-
-//
-// State
-//
-const signingOut = ref(false);
-
-//
-// Methods
-//
-const handleLogout = async () => {
-  signingOut.value = true;
-  try {
-    await logout();
-    // Will be redirected by middleware
-  } finally {
-    signingOut.value = false;
-  }
-};
+const { displayName } = useAuth();
 
 //
 // Metadata
 //
 definePageMeta({
   title: "Начало",
-  requiresAuth: true,
 });
 </script>

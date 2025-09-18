@@ -16,6 +16,7 @@
         :title="item.title"
         :tooltipText="item.tooltipText"
         :external="item?.external || false"
+        :isPirinAdminRequired="item?.isPirinAdminRequired || false"
       />
     </template>
   </v-list>

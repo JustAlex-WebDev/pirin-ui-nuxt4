@@ -95,12 +95,37 @@ export const useAuth = () => {
     await loadUser();
   };
 
+  //
+  // Computed - Role checks
+  //
+  const userRoles = computed(() => {
+    return authClient.getRoles() || [];
+  });
+
+  const isPirinUser = computed(() => {
+    return userRoles.value.includes("pirin-user");
+  });
+
+  const isPirinAdmin = computed(() => {
+    return userRoles.value.includes("pirin-admin");
+  });
+
+  const pirinRoles = computed(() => {
+    return userRoles.value.filter(
+      (role) => role === "pirin-user" || role === "pirin-admin"
+    );
+  });
+
   return {
     // State
     isAuthenticated: readonly(isAuthenticated),
     user: readonly(user),
     displayName,
     error: readonly(error),
+    userRoles,
+    isPirinUser,
+    isPirinAdmin,
+    pirinRoles,
 
     // Auth client passthrough
     getRoles: authClient.getRoles,

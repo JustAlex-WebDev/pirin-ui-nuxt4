@@ -25,11 +25,8 @@
     <!-- Upload Status Menu -->
     <UploadStatusMenu />
 
-    <!-- Account Button -->
-    <AppBarActionButton
-      icon="mdi-account-outline"
-      tooltipText="Детайли за профила"
-    />
+    <!-- Account Menu -->
+    <AccountMenu />
   </div>
 </template>
 
@@ -38,6 +35,7 @@
 // Imports
 //
 import AppBarActionButton from "../molecules/AppBarActionButton.vue";
+import AccountMenu from "./AccountMenu.vue";
 import UploadStatusMenu from "./UploadStatusMenu.vue";
 
 //
