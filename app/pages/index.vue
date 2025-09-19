@@ -12,6 +12,7 @@
     :loading="loading"
     moreInfoText="Повече информация"
     :showMoreInfo="true"
+    :skeletonCount="3"
   />
 
   <!-- Table Section Header -->

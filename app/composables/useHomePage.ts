@@ -211,18 +211,6 @@ export const useHomePage = () => {
     }
   };
 
-  //
-  // Watchers
-  //
-  watch(dataFilter, (newValue, oldValue) => {
-    // Skip initial watch trigger
-    if (oldValue === undefined) {
-      return;
-    }
-
-    fetchLast5Days();
-  });
-
   // Cleanup on unmount
   onUnmounted(() => {
     cleanup();

@@ -1,13 +1,13 @@
 <template>
-  <v-row class="my-2" data-testid="stats-cards-section">
+  <v-row class="my-2">
     <!-- Loading Skeletons -->
     <template v-if="loading">
       <v-col
-        v-for="i in skeletonCount"
+        v-for="i in cards"
         :key="`skeleton-${i}`"
         cols="12"
-        lg="4"
-        md="6"
+        :lg="getCardSize(cards.length)"
+        :md="cards.length > 3 ? '6' : '4'"
         sm="6"
         xs="12"
       >
@@ -71,7 +71,12 @@ interface Props {
   skeletonCount?: number;
 }
 
-defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  loading: false,
+  showMoreInfo: true,
+  moreInfoText: "Повече информация",
+  skeletonCount: 3,
+});
 
 //
 // Methods

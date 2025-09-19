@@ -17,7 +17,7 @@
 //
 // Composables
 //
-const { loading, dataFilter } = useHomePage();
+const { loading, dataFilter, fetchLast5Days } = useHomePage();
 
 //
 // Types
@@ -36,4 +36,15 @@ const tabs: Tab[] = [
   { key: "sales", label: "Без направления", icon: "mdi-cash-register" },
   { key: "", label: "Всички", icon: "mdi-view-grid" },
 ];
+
+//
+// Watchers
+//
+watch(
+  dataFilter,
+  () => {
+    fetchLast5Days();
+  },
+  { immediate: false }
+);
 </script>
