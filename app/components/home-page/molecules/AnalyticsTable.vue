@@ -27,7 +27,12 @@
       <!-- Dynamic header slots -->
       <template
         v-for="header in headers"
-        #[header.key]="{ column, getSortIcon, toggleSort, isSorted }"
+        #[`header.${header.key}`]="{
+          column,
+          getSortIcon,
+          toggleSort,
+          isSorted,
+        }"
         :key="header.key"
       >
         <div
