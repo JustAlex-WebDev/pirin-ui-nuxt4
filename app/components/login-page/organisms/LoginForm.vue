@@ -1,7 +1,7 @@
 <template>
   <v-row>
     <div
-      class="w-100 d-flex flex-wrap ga-8 ga-0 align-start align-sm-center justify-start justify-sm-center px-4"
+      class="w-100 d-flex flex-wrap ga-8 align-start align-sm-center justify-start justify-sm-center px-4"
     >
       <div style="max-width: 380px">
         <LoginContent
@@ -12,7 +12,7 @@
         />
       </div>
 
-      <div class="ml-0 ml-md-16">
+      <div class="ml-0 ml-md-16 pl-0 pl-lg-16">
         <LoginIllustration
           image-src="/img/forest-sm.jpg"
           image-alt="Пирин – илюстрация на гора"

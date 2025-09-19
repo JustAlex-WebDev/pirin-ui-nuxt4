@@ -1,11 +1,39 @@
 <template>
-  <div class="d-flex align-center ga-4">
-    <!-- Welcome Chip -->
-    <v-chip color="white" variant="outlined" size="small">
-      <v-icon start icon="mdi-home"></v-icon>
-      Добре дошли
-    </v-chip>
-  </div>
+  <!-- Data Filter Tabs -->
+  <v-tabs
+    v-model="dataFilter"
+    color="white"
+    density="compact"
+    :disabled="loading"
+  >
+    <v-tab v-for="tab in tabs" :key="tab.key" :value="tab.key">
+      <!-- <v-icon start :icon="tab.icon" size="small" /> -->
+      {{ tab.label }}
+    </v-tab>
+  </v-tabs>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+//
+// Composables
+//
+const { loading, dataFilter } = useHomePage();
+
+//
+// Types
+//
+interface Tab {
+  key: string;
+  label: string;
+  icon: string;
+}
+
+//
+// State
+//
+const tabs: Tab[] = [
+  { key: "referrals", label: "Направления", icon: "mdi-file-document" },
+  { key: "sales", label: "Без направления", icon: "mdi-cash-register" },
+  { key: "", label: "Всички", icon: "mdi-view-grid" },
+];
+</script>

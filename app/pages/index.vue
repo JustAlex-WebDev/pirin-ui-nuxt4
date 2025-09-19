@@ -1,29 +1,61 @@
 <template>
-  <v-row>
-    <v-col cols="12">
-      <v-sheet class="pa-6 mb-0" elevation="1" rounded>
-        <h1 class="text-h4 mb-2 d-flex align-center ga-2">
-          <!-- Icon -->
-          <v-icon :icon="'mdi-home-outline'" size="x-small" color=""></v-icon>
+  <!-- Page Header -->
+  <AnalyticsPageHeader
+    :title="pageConfig.header.title"
+    :subtitle="pageConfig.header.subtitle"
+    :description="pageConfig.header.description"
+  />
 
-          <!-- Title -->
-          <span>Начало</span>
-        </h1>
+  <!-- Analytics Cards Grid -->
+  <AnalyticsCardsGrid
+    :cards="analyticsCards"
+    :loading="loading"
+    moreInfoText="Повече информация"
+    :showMoreInfo="true"
+  />
 
-        <!-- Subtitle -->
-        <p class="text-subtitle-1 text-medium-emphasis">
-          Добре дошли в системата Пирин, {{ displayName }}!
-        </p>
-      </v-sheet>
-    </v-col>
-  </v-row>
+  <!-- Table Section Header -->
+  <AnalyticsSectionHeader
+    :title="pageConfig.tableSection.title"
+    :description="pageConfig.tableSection.description"
+  />
+
+  <!-- Analytics Table Component -->
+  <AnalyticsTable
+    :items="data || []"
+    :headers="tableHeaders"
+    :loading="loading"
+    item-key="visitDate"
+  />
 </template>
 
 <script setup lang="ts">
 //
+// Imports
+//
+import AnalyticsPageHeader from "~/components/home-page/molecules/AnalyticsPageHeader.vue";
+import AnalyticsSectionHeader from "~/components/home-page/molecules/AnalyticsSectionHeader.vue";
+import AnalyticsTable from "~/components/home-page/molecules/AnalyticsTable.vue";
+import AnalyticsCardsGrid from "~/components/home-page/organisms/AnalyticsCardsGrid.vue";
+
+//
 // Composables
 //
-const { displayName } = useAuth();
+const {
+  loading,
+  data,
+  analyticsCards,
+  pageConfig,
+  tableHeaders,
+  fetchLast5Days,
+} = useHomePage();
+
+//
+// Lifecycle
+//
+onMounted(() => {
+  fetchLast5Days();
+});
 
 //
 // Metadata

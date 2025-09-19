@@ -1,4 +1,16 @@
+import type { AnalyticsParams, AnalyticsResponse } from "../types/analytics";
+
 export interface IPortalClient {
+  //
+  // Analytics
+  //
+
+  // Analytics aggregate data
+  fetchAnalyticsAggregate(
+    params?: AnalyticsParams,
+    ac?: AbortSignal | null
+  ): Promise<AnalyticsResponse>;
+
   //
   // Services
   //
